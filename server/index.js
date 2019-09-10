@@ -14,6 +14,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+//for getting a listing
 app.get('/api/:listing', (req, res) => {
   db.getImagesFromListing(req.params.listing, (error, images) => {
     if (error) { return error; }
@@ -21,4 +23,20 @@ app.get('/api/:listing', (req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+//for posting a listing
+app.post('/api/post/:listing', (req, res) =>{
+
+});
+//for updating a listing
+app.put('/api/update/:listing', (req, res) => {
+
+
+})
+//for deleting a listing
+app.delete('/api/delete/:listing', (req, res) => {
+
+})
+
+
+
+app.listen(port, () => console.log(`Reservations listening on port ${port}!`));

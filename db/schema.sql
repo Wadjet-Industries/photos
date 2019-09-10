@@ -11,7 +11,7 @@ CREATE TABLE listings (
 
 CREATE TABLE images (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  url varchar(2083) NOT NULL UNIQUE,
+  url varchar(2083) NOT NULL,
   description varchar(255),
   user_submit boolean,
   date date,
