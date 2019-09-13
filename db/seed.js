@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+ const mysql = require('mysql');
 const mysqlConfig = require('./config.js');
 const faker = require('faker');
 

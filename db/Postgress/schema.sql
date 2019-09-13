@@ -1,23 +1,25 @@
-createdb Photos_Gallery
+DROP DATABASE IF EXISTS photos;
 
-DROP SCHEMA Photos CASCADE;
+CREATE DATABASE photos;
 
-CREATE Photos;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO postgres;
 
-CREATE TABLE Photos.listings(
-  id INT SERIAL PRIMARY KEY,
+\connect photos;
+
+CREATE TABLE listings (
+  id SERIAL PRIMARY KEY
 );
 
-CREATE TABLE Photos.images(
-  id INT SERIAL PRIMARY KEY,
+CREATE TABLE images(
+  id SERIAL PRIMARY KEY,
   url varchar(1500) NOT NULL,
   description varchar(255),
   user_submit boolean,
-  date date,
+  date date
 );
 
-CREATE TABLE Photos.listings_images(
-  id INT SERIAL PRIMARY KEY,
+CREATE TABLE listings_images(
+  id SERIAL PRIMARY KEY,
   listing_id INT NOT NULL,
-  image_id INT NOT NULL,
+  image_id INT NOT NULL
 );

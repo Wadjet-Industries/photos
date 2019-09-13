@@ -1,5 +1,5 @@
 Create keyspace photos_gallery
-with replication = {'class':'SimpleStrategy', 'replication_factor': '5'};
+with replication = {'class':'SimpleStrategy', 'replication_factor': '1'};
 
 use photos_gallery;
 

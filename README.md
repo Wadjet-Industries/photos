@@ -82,7 +82,7 @@ output:
     response(400)
     "could not get"
 -------------------------------------------------
-For posting: app.post ~ "/api/post/:listing"
+For posting: app.post ~ "/api/:listing"
 input: {url: url, description: "", user_submit:0, date: date,}
 output:
   success:
@@ -93,7 +93,7 @@ output:
     "could not post"
 
 -------------------------------------------------
-For updating: app.put ~ "/api/update/:listing"
+For updating: app.put ~ "/api/:listing"
 input: anything that needs updating ~ {listing_id, image_id, `things that need updating`}
 output:
   success:
@@ -102,7 +102,7 @@ output:
     response(400)
     "could not update"
 -------------------------------------------------
-For deleting: app.delete ~ "/api/delete/:listing"
+For deleting: app.delete ~ "/api/:listing"
 input: {listing_id, image_id}
 output:
   success:
