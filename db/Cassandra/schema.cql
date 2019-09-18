@@ -17,5 +17,5 @@ Create table images_listings (
   description text,
   user_submit boolean,
   date date,
-  PRIMARY KEY (images_id, listing_id)
+  PRIMARY KEY (listing_id, images_id)
 );
