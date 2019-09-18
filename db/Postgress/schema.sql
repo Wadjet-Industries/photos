@@ -21,5 +21,7 @@ CREATE TABLE images(
 CREATE TABLE listings_images(
   id SERIAL PRIMARY KEY,
   listing_id INT NOT NULL,
-  image_id INT NOT NULL
+  image_id INT NOT NULL,
+  FOREIGN KEY (listing_id) REFERENCES listings(id),
+  FOREIGN KEY (image_id) REFERENCES images(id)
 );
