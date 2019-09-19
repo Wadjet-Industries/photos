@@ -54,7 +54,7 @@ npm run start
 ### RESTful CRUD API
 ```sh
 -------------------------------------------------
-For getting: app.get ~ "/api/:listing"
+For getting: app.get ~ "/api/listing/:listing/photos"
 input: {:listing_id}
 output:
   success:
@@ -82,7 +82,7 @@ output:
     response(400)
     "could not get"
 -------------------------------------------------
-For posting: app.post ~ "/api/:listing"
+For posting: app.post ~ "/api/listing/:listing/photos"
 input: {url: url, description: "", user_submit:0, date: date,}
 output:
   success:
@@ -93,7 +93,7 @@ output:
     "could not post"
 
 -------------------------------------------------
-For updating: app.put ~ "/api/:listing"
+For updating: app.put ~ "/api/:listing/photos/:photo"
 input: anything that needs updating ~ {listing_id, image_id, `things that need updating`}
 output:
   success:
@@ -102,8 +102,8 @@ output:
     response(400)
     "could not update"
 -------------------------------------------------
-For deleting: app.delete ~ "/api/:listing"
-input: {listing_id, image_id}
+For deleting: app.delete ~ "/api/:listing/photos/:photo"
+input: {image_id}
 output:
   success:
     response(200)

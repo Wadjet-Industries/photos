@@ -12,16 +12,9 @@ CREATE TABLE listings (
 
 CREATE TABLE images(
   id SERIAL PRIMARY KEY,
+  listing_id INT,
   url varchar(1500) NOT NULL,
   description varchar(255),
   user_submit boolean,
   date date
-);
-
-CREATE TABLE listings_images(
-  id SERIAL PRIMARY KEY,
-  listing_id INT NOT NULL,
-  image_id INT NOT NULL,
-  FOREIGN KEY (listing_id) REFERENCES listings(id),
-  FOREIGN KEY (image_id) REFERENCES images(id)
 );
