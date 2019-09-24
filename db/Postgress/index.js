@@ -1,16 +1,15 @@
 const pg = require('pg');
 const connectionString = "postgresql://postgres:password@localhost:5433/photos";
-const pgClient = new pg.Client(connectionString);
+const pool = new pg.Pool({connectionString: connectionString})
 
-pgClient.connect();
+pool.connect();
 
 const getListings = (listingID, callback) => {
   listingID = Number(listingID);
-  pgClient.query(`SELECT * from listings where id = ${listingID}`, (err, res) => {
+  pool.query(`SELECT * from listings where id = ${listingID}`, (err, res) => {
     if (err) {
       console.log(err)
     } else {
-      console.log("sent listings")
       callback(res.rows)
     }
   });
@@ -18,12 +17,10 @@ const getListings = (listingID, callback) => {
 
 const getImagesFromListings = (listingID, callback) => {
   listingID = Number(listingID);
-  pgClient.query(`SELECT * from images where listing_id = ${listingID}`, (err, res) => {
+  pool.query(`SELECT * from images where listing_id = ${listingID}`, (err, res) => {
     if (err) {
       console.log(err)
     } else {
-      console.log(`sent listing images for ${listingID}`)
-
       callback(res.rows)
     }
   });
@@ -36,7 +33,7 @@ const updateImagesFromListings = (imageID, information, callback) => {
   const user_submit = information.user_submit;
   const date = information.date;
 
-  pgClient.query(`UPDATE images SET url = '${url}', description = '${description}', user_submit = ${user_submit}, date = '${date}' WHERE id = ${imageID}`, (err, res) => {
+  pool.query(`UPDATE images SET url = '${url}', description = '${description}', user_submit = ${user_submit}, date = '${date}' WHERE id = ${imageID}`, (err, res) => {
     if (err) {
       console.log(err)
       callback(`could not update for ${imageID}`)
@@ -53,9 +50,8 @@ const postImagesFromListings = (listingID, information, callback) => {
   const user_submit = information.user_submit;
   const date = information.date;
   //for images
-  pgClient.query(`INSERT INTO images (listing_id, url, description, user_submit, date) VALUES (${listingID}, '${url}', '${description}', '${user_submit}', '${date}')`, (err, res) => {
+  pool.query(`INSERT INTO images (listing_id, url, description, user_submit, date) VALUES (${listingID}, '${url}', '${description}', '${user_submit}', '${date}')`, (err, res) => {
     if (err) {
-      console.log(err)
       callback(`could not post on images for ${listingID}`)
     } else {
       console.log(res, "this is res")
@@ -66,7 +62,7 @@ const postImagesFromListings = (listingID, information, callback) => {
 
 const deleteImagesFromListings = (imageID, callback) => {
   imageID = Number(imageID)
-  pgClient.query(`DELETE FROM images WHERE ID = ${imageID}`, (err, res) => {
+  pool.query(`DELETE FROM images WHERE ID = ${imageID}`, (err, res) => {
     if (err) {
       callback (`could not delete for ${imageID}`)
     } else {

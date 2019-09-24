@@ -47,13 +47,9 @@ class BannerGallery extends React.Component {
   componentDidMount() {
     let url = window.location.pathname;
     let listing = url.slice(1, -1);
-
-    if (Number(listing.slice(1)) <= 0 || Number(listing.slice(1)) >= 100) {
-      listing = 'L1';
-    }
-
-    axios.get(`http://54.241.154.11:3001/api/${listing}`)
+    axios.get(`http://localhost:3001/api/listing/${listing}/photos`)
       .then((res) => {
+        console.log(res, "this is the res")
         this.setState({
           images: res.data
         });

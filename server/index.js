@@ -1,25 +1,25 @@
+require ('newrelic')
 const express = require('express');
 const compression = require('compression')
 const bodyParser = require('body-parser')
 const db = require('../db/index.js');
 const pg = require ('../db/Postgress/index.js')
-
+const cors = require ('cors')
 const app = express();
 const port = 3001;
+app.use(cors())
+
+var http = require('http');
+var https = require('https');
+http.globalAgent.maxSockets = Infinity;
+https.globalAgent.maxSockets = Infinity;
+
 
 //parsing body
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded())
-
 app.use(compression());
+app.use(bodyParser.json())
 app.use(express.static('public'));
-app.use('/:listing', express.static('public'));
-
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-
+app.use('/listing/:listing', express.static('public', {maxAge:31557600}));
 
 //for getting a listing
 app.get('/api/listing/:listing', (req, res) => {
@@ -38,6 +38,7 @@ app.get('/api/listing/:listing', (req, res) => {
 //for getting the images of a listing
 app.get('/api/listing/:listing/photos', (req, res) => {
   //for PostGres
+  console.log("hit")
   pg.getImagesFromListings(req.params.listing, result => {
     res.send(result)
   })
@@ -46,7 +47,6 @@ app.get('/api/listing/:listing/photos', (req, res) => {
 
 //for posting a listing
 app.post('/api/listing/:listing/photos', (req, res) =>{
-  console.log(req.body.information, "this is the information")
   pg.postImagesFromListings(req.params.listing, req.body.information, result => {
     res.send(result)
   })
@@ -68,4 +68,4 @@ app.delete('/api/listing/:listing/photos/:photo', (req, res) => {
 
 
 
-app.listen(port, () => console.log(`Reservations listening on port ${port}!`));
+app.listen(port, () => console.log(`photosGallery listening on port ${port}!`));
