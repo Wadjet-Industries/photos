@@ -9,19 +9,43 @@ function getRandomInt(max1) {
 
 
 // // for listings
-// writer.pipe(fs.createWriteStream('listings.csv'))
-// for (let i = 0; i <= 999999; i++) {
-//       writer.write({id: i})
+// var listings = fs.createWriteStream('listings.csv')
+// listings.write('id\n', 'utf8')
+// function writeListings (writer, encoding, callback) {
+//   let i = 10000000;
+//   let id = 0;
+//   function write () {
+//     let ok = true;
+//     do {
+//       i -= 1;
+//       id +=1;
+//       if (id % 1000000 === 0) {
+//         console.log(id, "LISTING")
+//       }
+//       let data = `${id}\n`
+//       if (i === 0) {
+//         writer.write(data, encoding, callback)
+//       } else {
+//         ok = writer.write(data, encoding)
+//       }
+//     } while (i > 0 && ok);
+//     if (i > 0) {
+//       writer.once('drain', write)
 //     }
-//   console.log("done seeding listings")
-
+//   }
+//   write();
+// }
+// writeListings(listings, 'utf-8', () => {
+//   listings.end();
+//   console.log("done seeding listings!")
+// });
 // for images
 
 //function for writing 100 million images and draining
 var writeImages = fs.createWriteStream('images.csv')
 writeImages.write('listing_id, url, description, user_submit, date\n', 'utf8');
 function writeHundredImages(writer, encoding, callback) {
-  let i = 5000000
+  let i = 50000000
   let id = 0;
   function write() {
     let ok = true;
@@ -31,10 +55,10 @@ function writeHundredImages(writer, encoding, callback) {
       id += 1;
       //logger every million
       if (id % 1000000 === 0) {
-        console.log(id)
+        console.log(id, "IMAGES")
       }
       let imageUrl = `https://llaminati-images.s3-us-west-1.amazonaws.com/${getRandomInt(98)}.jpg`;
-      let listingid = getRandomInt(999999)
+      let listingid = getRandomInt(9999999)
       let description = faker.lorem.words();
       description = description.split(' ');
       description = description.map(word => word[0].toUpperCase() + word.substr(1));
