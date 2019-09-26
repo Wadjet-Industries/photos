@@ -1,5 +1,5 @@
 const pg = require('pg');
-const connectionString = "postgresql://postgres:password@localhost:5433/photos";
+const connectionString = "postgresql://power_user:password@18.222.195.134:5432/photos";
 const pool = new pg.Pool({connectionString: connectionString})
 
 pool.connect();

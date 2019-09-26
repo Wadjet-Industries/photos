@@ -20,7 +20,7 @@ app.use(compression());
 app.use(bodyParser.json())
 app.use(express.static('public'));
 app.use('/listing/:listing', express.static('public', {maxAge:31557600}));
-
+//for loader
 //for getting a listing
 app.get('/api/listing/:listing', (req, res) => {
   // // for MYSQL
@@ -37,8 +37,7 @@ app.get('/api/listing/:listing', (req, res) => {
 
 //for getting the images of a listing
 app.get('/api/listing/:listing/photos', (req, res) => {
-  //for PostGres
-  console.log("hit")
+  //for Postgres
   pg.getImagesFromListings(req.params.listing, result => {
     res.send(result)
   })
