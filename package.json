@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "npx webpack --config webpack.config.js -d -w",
-    "start": "nodemon --max-old-space-size=10000 server/index.js -w",
+    "start": "nodemon --max-old-space-size=900 server/index.js -w",
     "create": "mysql -u root < ./db/schema.sql",
     "seed": "node --max-old-space-size=8192 ./db/Postgress/seedTenMillionCSV.js",
     "test": "jest --coverage --verbose"

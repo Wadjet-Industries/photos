@@ -19,7 +19,7 @@ https.globalAgent.maxSockets = Infinity;
 app.use(compression());
 app.use(bodyParser.json())
 app.use(express.static('public'));
-app.use('/listing/:listing', express.static('public', {maxAge:31557600}));
+app.use('/:listing', express.static('public', {maxAge:31557600}));
 //for loader
 //for getting a listing
 app.get('/api/listing/:listing', (req, res) => {
