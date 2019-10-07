@@ -119,9 +119,11 @@ output:
 
 
  ### PostGreSQL with implementation of indexing
-![withIndex](https://imgur.com/iUTlKKx)
+
+![withIndex](https://i.imgur.com/iUTlKKx.png)
 
  ### initial stress-test data
-![initialStressTest](https://imgur.com/4bjRja1)
+
+![initialTest](https://i.imgur.com/4bjRja1.png)
 
  ### stress-test data after optimizations
