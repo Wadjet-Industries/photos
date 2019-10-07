@@ -1,6 +1,6 @@
-# Banner Gallery
+# ClosedTable: Banner Gallery Module
 
-> Project description
+> Refactored legacy code for the back-end of a mock Open Table banner gallery module.
 
 ## Related Projects
 
@@ -11,13 +11,13 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+1. [Description](#Description)
 1. [Requirements](#requirements)
 1. [Development](#development)
+1. [Screenshots](#screenshots)
 
-## Usage
-
-> Some usage instructions
+## Description
+The microservice that I initially inherited had a page load time of > 3s for one real client visiting the page, without stress testing for multiple users per second. By refactoring the back-end to use PostgreSQL instead of MongoDB, I was able to decrease page rendering times to < 25 ms. Using Loader.io as a stress tester and newRelic as my metrics watcher, I stress tested my proxy server and found that it could only handle 150-160 Requests per second with a latency of 500 ms and an error rate of 14%. After additional configuration, refactoring, and implementation of load balancing and Redis caching, I was able to increase my throughput to 1900 RPS. For any further questions, please ask me about this project.
 
 ## Requirements
 
@@ -40,15 +40,15 @@ npm install
 ### Seeding database
 
 ```sh
-npm run create
-npm run seed
+npm run create---makes the database and table for PostgreSQL
+npm run seed--- seeds 10 million records and 50 million photos to PostgreSQL
 ```
 
 ### Starting webpack and run server
 
 ```sh
-npm run build
-npm run start
+npm run build ---for watching your changes.
+npm run start ---for starting up your server.
 ```
 
 ### RESTful CRUD API
@@ -111,3 +111,12 @@ output:
     response(400)
     "could not delete"
 ```
+
+## Screenshots
+ ### PostGreSQL without implementation of indexing
+
+ ### PostGreSQL with implementation of indexing
+
+ ### initial stress-test data
+
+ ### stress-test data after optimizations
