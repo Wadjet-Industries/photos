@@ -115,8 +115,13 @@ output:
 ## Screenshots
  ### PostGreSQL without implementation of indexing
 
+![withoutIndex](https://i.imgur.com/dwKK07f.png)
+
+
  ### PostGreSQL with implementation of indexing
+![withIndex](https://imgur.com/iUTlKKx)
 
  ### initial stress-test data
+![initialStressTest](https://imgur.com/4bjRja1)
 
  ### stress-test data after optimizations
