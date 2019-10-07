@@ -17,7 +17,7 @@
 1. [Screenshots](#screenshots)
 
 ## Description
-The microservice that I initially inherited had a page load time of > 3s for one real client visiting the page, without stress testing for multiple users per second. By refactoring the back-end to use PostgreSQL instead of MongoDB, I was able to decrease page rendering times to < 25 ms. Using Loader.io as a stress tester and newRelic as my metrics watcher, I stress tested my proxy server and found that it could only handle 150-160 Requests per second with a latency of 500 ms and an error rate of 14%. After additional configuration, refactoring, and implementation of load balancing and Redis caching, I was able to increase my throughput to 1900 RPS. For any further questions, please ask me about this project.
+The microservice that I initially inherited had a page load time of > 3s for one real client visiting the page, without stress testing for multiple users per second. By refactoring the back-end to use PostgreSQL instead of MongoDB, I was able to decrease page rendering times to < 25 ms. Using Loader.io as a stress tester and newRelic as my metrics watcher, I stress tested my proxy server and found that it could only handle 150-160 Requests per second with a latency of 1500 ms and an error rate of 14%. After additional configuration, refactoring, and implementation of load balancing and Redis caching, I was able to increase my throughput to 1900 RPS with under 50 ms latency and an error rate of less than 1%. For any further questions, please ask me about this project.
 
 ## Requirements
 
@@ -122,8 +122,8 @@ output:
 
 ![withIndex](https://i.imgur.com/iUTlKKx.png)
 
- ### initial stress-test data
+ ### Initial stress-test data
 
 ![initialTest](https://i.imgur.com/4bjRja1.png)
 
- ### stress-test data after optimizations
+ ### Stress-test data after optimizations
